@@ -75,22 +75,42 @@
     </thead>
     <tbody>
 
-        <h1>{{ dd($file->filename) }}</h1>
+      
 
-        @foreach ($file as $files)
+        {{-- @foreach ($file as $key => $value)
+
+            @foreach (json_decode($value->filename) as $value)
+                <br><a href="/test">{{ $value }}</a>
+            @endforeach
+
+        @endforeach --}}
+
+
+        @foreach ($file as $key => $value)
           <tr>
-              <td>
-                 <a href="">{{ $files->filename }}</a>
-                  {{-- @foreach ($file as $f)
-                        <a href="">test</a>
-                  @endforeach --}}
-
-                {{-- <a href="files/{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}">{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}</a> --}}
-                {{-- <a href="files/{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}">{{ $files->filename}}</a> --}}
-               </td>  
-
+            <td>{{ $value->id }}</td>
+            <td>
+              @foreach (json_decode($value->filename) as $test)
+                <a href="files/{{ $test }}">{{ $test }}</a>
+              @endforeach
+            </td>
           </tr>
+
+        {{-- <tr>
+          <td>
+            @foreach (json_decode($value->filename) as $value)
+              <a href="files/{{ $value }}">{{ $value }}</a>
+            @endforeach
+          </td> --}}
+          {{-- <td><p>{{ $value->id }}</p></td> --}}
+        {{-- </tr> --}}
         @endforeach
+
+
+          {{-- <a href="files/{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}">{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}</a> --}}
+          {{-- <a href="files/{{ str_replace (array('[', ']', '"'), '' , $files->filename); }}">{{ $files->filename}}</a> --}}
+
+
     </tbody>
   </table>
 
